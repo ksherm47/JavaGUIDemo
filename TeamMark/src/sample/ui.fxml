@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane gridLinesVisible="true" maxHeight="250" maxWidth="250" minHeight="250" minWidth="250" prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane gridLinesVisible="true" maxHeight="250" maxWidth="250" minHeight="250" minWidth="250" prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UIController">
     <children>
         <Button fx:id="pin1" GridPane.rowIndex="0" GridPane.columnIndex="0" mnemonicParsing="false" text="Pin 1" visible="true" managed="true" />
         <Button fx:id="pin2" GridPane.rowIndex="0" GridPane.columnIndex="1" mnemonicParsing="false" text="Pin 2" visible="true" managed="true" />
