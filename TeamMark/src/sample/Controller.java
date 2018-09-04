@@ -42,7 +42,7 @@ public class Controller {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Porn");
+            stage.setTitle("UI");
             stage.setScene(new Scene(root, 250, 250));
             stage.show();
             //closes current window
