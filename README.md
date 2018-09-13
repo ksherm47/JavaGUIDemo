@@ -26,3 +26,6 @@
     - Choose sample.Main as Main Class, click Ok
   
 - Now you should be able to Run -> Run 'Main'
+
+## Resources
+- [GridPane Tutorial](https://docs.oracle.com/javafx/2/get_started/fxml_tutorial.htm)
