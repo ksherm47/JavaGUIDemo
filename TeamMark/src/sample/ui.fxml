@@ -11,9 +11,9 @@
   <children>
     <VBox alignment="CENTER" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Button fx:id="phase1" onAction="#openPhase(1)" managed="true" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" scaleZ="1.0" text="Phase 1" visible="true" />
-        <Button fx:id="phase2" onAction="#openPhase(2)" managed="true" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Phase 2" visible="true" />
-        <Button fx:id="phase3" onAction="#openPhase(3)" managed="true" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Phase 3" visible="true" />
+        <Button fx:id="phase1_button" onAction="#openPhase" managed="true" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" scaleZ="1.0" text="Phase 1" visible="true" />
+        <Button fx:id="phase2_button" managed="true" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Phase 2" visible="true" />
+        <Button fx:id="phase3_button" managed="true" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Phase 3" visible="true" />
       </children>
     </VBox>
     <Label alignment="TOP_RIGHT" scaleX="1.0" scaleY="1.0" text="Username: Example Username" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="25.0" />
