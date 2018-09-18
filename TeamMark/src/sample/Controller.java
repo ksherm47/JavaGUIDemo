@@ -40,14 +40,15 @@ public class Controller {
     public void login() {
         //opens main ui window
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("UI");
-            stage.setScene(new Scene(root, 250, 250));
-            stage.show();
             //closes current window
             Stage closeStage = (Stage) button_login.getScene().getWindow();
             closeStage.close();
+            Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("UI");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.show();
         }
         catch (IOException e) {
             e.printStackTrace();

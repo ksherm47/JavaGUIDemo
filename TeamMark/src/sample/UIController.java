@@ -17,7 +17,7 @@ public class UIController {
             Parent root = FXMLLoader.load(getClass().getResource("phase_pane.fxml"));
             Stage phaseStage = new Stage();
             phaseStage.setTitle("Phase Configuration");
-            phaseStage.setScene(new Scene(root, 550, 400));
+            phaseStage.setScene(new Scene(root, 640, 480));
             phaseStage.show();
         } catch (IOException ioe) {
             ioe.printStackTrace();
