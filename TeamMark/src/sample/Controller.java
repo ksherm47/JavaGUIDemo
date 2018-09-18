@@ -45,7 +45,7 @@ public class Controller {
             closeStage.close();
             Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
             Stage Uistage = new Stage();
-            Uistage.setTitle("SI");
+            Uistage.setTitle("UI");
             Uistage.setScene(new Scene(root,640,480));
             Uistage.setResizable(false);
             Uistage.show();

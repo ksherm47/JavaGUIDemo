@@ -8,15 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6ec03191-7155-4a60-9b3f-6be4a52f245d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/artifacts/add_phase_jar/add-phase.jar" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/artifacts/add_phase_jar/add-phase.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/UIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/UIController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/ui.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/ui.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/UIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/ui.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/ui.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,13 +23,14 @@
     <session id="-1104106205">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -55,12 +48,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="117" />
-          <entry key="java" value="101" />
+          <entry key="java" value="102" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="101" />
+          <entry key="JAVA" value="102" />
           <entry key="XML" value="117" />
         </counts>
       </usages-collector>
@@ -68,11 +61,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+            <state relative-caret-position="816">
+              <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,19 +75,19 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/login.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
-              <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+              <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,18 +97,18 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/ui.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="238">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/UIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="221">
               <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -126,12 +119,12 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/phase_pane.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="153">
               <caret line="9" column="134" selection-start-line="9" selection-start-column="134" selection-end-line="9" selection-end-column="134" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -151,9 +144,9 @@
         <option value="$PROJECT_DIR$/TeamMark/src/sample/phase_pane.fxml" />
         <option value="$PROJECT_DIR$/TeamMark/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/TeamMark/src/sample/login.fxml" />
-        <option value="$PROJECT_DIR$/TeamMark/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/TeamMark/src/sample/ui.fxml" />
         <option value="$PROJECT_DIR$/TeamMark/src/sample/UIController.java" />
+        <option value="$PROJECT_DIR$/TeamMark/src/sample/Controller.java" />
       </list>
     </option>
   </component>
@@ -163,7 +156,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="1784" />
@@ -230,7 +223,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21983472" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21983472" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39917356" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -257,33 +250,25 @@
     <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/login.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/ui.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="238">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/Controller.java">
+    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/UIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+        <state relative-caret-position="221">
+          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -291,17 +276,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/phase_pane.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="153">
           <caret line="9" column="134" selection-start-line="9" selection-start-column="134" selection-end-line="9" selection-end-column="134" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/UIController.java">
+    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/login.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+        <state relative-caret-position="391">
+          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
