@@ -44,11 +44,11 @@ public class Controller {
             Stage closeStage = (Stage) button_login.getScene().getWindow();
             closeStage.close();
             Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("UI");
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-            stage.show();
+            Stage Uistage = new Stage();
+            Uistage.setTitle("SI");
+            Uistage.setScene(new Scene(root,640,480));
+            Uistage.setResizable(false);
+            Uistage.show();
         }
         catch (IOException e) {
             e.printStackTrace();
