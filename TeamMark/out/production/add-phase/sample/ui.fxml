@@ -9,6 +9,6 @@
     <Button fx:id="phase1_button" layoutX="300" layoutY="79.0" managed="true" mnemonicParsing="false" onAction="#openPhase" scaleX="2.0" scaleY="2.0" scaleZ="1.0" text="Phase 1" visible="true" />
     <Button fx:id="phase2_button" layoutX="300" layoutY="228.0" managed="true" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Phase 2" visible="true" />
     <Button fx:id="phase3_button" layoutX="300" layoutY="383.0" managed="true" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Phase 3" visible="true" />
-      <Label fx:id="username_label" layoutX="275.0" layoutY="14.0" prefHeight="35.0" prefWidth="228.0" text="Welcome: Username" />
+      <Label fx:id="label_username" layoutX="275.0" layoutY="14.0" prefHeight="35.0" prefWidth="228.0" text="Welcome: Username" />
   </children>
 </AnchorPane>

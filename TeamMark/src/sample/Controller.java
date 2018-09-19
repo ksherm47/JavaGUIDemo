@@ -37,18 +37,20 @@ public class Controller {
 
     //closes window on successful login and opens main ui window
     @FXML Button button_login;
+    @FXML Label label_username;
     public void login() {
         //opens main ui window
         try {
-            //closes current window
-            Stage closeStage = (Stage) button_login.getScene().getWindow();
-            closeStage.close();
             Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
             Stage Uistage = new Stage();
             Uistage.setTitle("UI");
             Uistage.setScene(new Scene(root,640,480));
             Uistage.setResizable(false);
             Uistage.show();
+            //label_username.setText(textField_userName.getText());
+            //closes current window
+            Stage closeStage = (Stage) button_login.getScene().getWindow();
+            closeStage.close();
         }
         catch (IOException e) {
             e.printStackTrace();
