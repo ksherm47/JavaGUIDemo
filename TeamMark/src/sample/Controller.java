@@ -35,6 +35,15 @@ public class Controller {
         }
     }
 
+    //clears text fields
+    public void clear() {
+        //empty text field userName
+        textField_userName.setText("");
+        //empty text field password
+        textField_password.setText("");
+        //displays error message
+    }
+
     //closes window on successful login and opens main ui window
     @FXML Button button_login;
     @FXML Label label_username;
