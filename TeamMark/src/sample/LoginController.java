@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class Controller {
+public class LoginController {
     //client side validation.
     //ensure username and password is not empty
     @FXML TextField textField_userName;

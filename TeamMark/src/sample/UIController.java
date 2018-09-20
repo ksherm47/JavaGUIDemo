@@ -7,11 +7,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.event.Event;
 import javafx.scene.control.Control;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
 public class UIController {
-    @FXML Button phase1_button;
     public void openPhase() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("phase_pane.fxml"));
@@ -22,19 +19,6 @@ public class UIController {
             phaseStage.show();
         } catch (IOException ioe) {
             ioe.printStackTrace();
-        }
-    }
-
-
-    //changes color of button on press
-    public void colorChange(Event evt) {
-        //changes color of button to green if not already green
-        if(((Control)evt.getSource()).getStyle() != "-fx-base: #b6e7c9;") {
-            ((Control) evt.getSource()).setStyle("-fx-base: #b6e7c9;");
-        }
-        //restores default color of button
-        else {
-            ((Control) evt.getSource()).setStyle("");
         }
     }
 }
