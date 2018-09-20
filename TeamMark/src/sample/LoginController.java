@@ -54,6 +54,10 @@ public class LoginController {
         }
         catch(Exception e) {
         }
+        //retrieves the UIController
+        UIController UIController = Loader.getController();
+        //calls fillUsername method from UIController
+        UIController.fillUsername(textField_userName.getText());
         Parent root = Loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
