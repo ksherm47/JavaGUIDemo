@@ -51,5 +51,4 @@ public class PhasePaneController {
         btn_stop.setDisable(true);
         btn_execute.setDisable(false);
     }
-
 }
