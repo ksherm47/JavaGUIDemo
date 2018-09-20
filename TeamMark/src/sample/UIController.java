@@ -5,8 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import javafx.event.Event;
-import javafx.scene.control.Control;
 
 public class UIController {
     public void openPhase() {
