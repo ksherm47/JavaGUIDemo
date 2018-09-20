@@ -1,22 +1,30 @@
 package sample;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 public class UIController {
+    @FXML Label label_username;
     public void openPhase() {
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("phase_pane.fxml"));
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("phase_pane.fxml"));
-            Stage phaseStage = new Stage();
-            phaseStage.setTitle("Phase Configuration");
-            phaseStage.setScene(new Scene(root, 640, 480));
-            phaseStage.setResizable(false);
-            phaseStage.show();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+            Loader.load();
         }
+        catch(Exception e) {
+        }
+        Parent root = Loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    //fills in username label
+    public void fillUsername (String username) {
+        label_username.setText(username);
     }
 }

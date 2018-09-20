@@ -8,15 +8,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 
 public class LoginController {
-    //client side validation.
-    //ensure username and password is not empty
     @FXML TextField textField_userName;
     @FXML TextField textField_password;
     @FXML Label label_error;
+    @FXML Button button_login;
+
+    //client side validation.
+    //ensure username and password is not empty
     public void validateLogin() {
         //if the text field userName is empty (null) or contains only spaces then reject
         //if the text field password is empty (null) or contains only spaces then reject
@@ -45,22 +46,20 @@ public class LoginController {
     }
 
     //closes window on successful login and opens main ui window
-    @FXML Button button_login;
     public void login() {
-        //opens main ui window
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("ui.fxml"));
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
-            Stage UIStage = new Stage();
-            UIStage.setTitle("UI");
-            UIStage.setScene(new Scene(root,640,480));
-            UIStage.setResizable(false);
-            UIStage.show();
-            //closes current window
-            Stage closeStage = (Stage) button_login.getScene().getWindow();
-            closeStage.close();
+            Loader.load();
         }
-        catch (IOException e) {
-            e.printStackTrace();
+        catch(Exception e) {
         }
+        Parent root = Loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+        //closes current window
+        Stage closeStage = (Stage) button_login.getScene().getWindow();
+        closeStage.close();
     }
 }
