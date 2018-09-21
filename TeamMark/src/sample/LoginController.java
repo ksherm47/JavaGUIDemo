@@ -8,15 +8,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 
-public class Controller {
-    //client side validation.
-    //ensure username and password is not empty
+public class LoginController {
     @FXML TextField textField_userName;
     @FXML TextField textField_password;
     @FXML Label label_error;
+    @FXML Button button_login;
+
+    //client side validation.
+    //ensure username and password is not empty
     public void validateLogin() {
         //if the text field userName is empty (null) or contains only spaces then reject
         //if the text field password is empty (null) or contains only spaces then reject
@@ -35,22 +36,34 @@ public class Controller {
         }
     }
 
+    //clears text fields
+    public void clear() {
+        //empty text field userName
+        textField_userName.setText("");
+        //empty text field password
+        textField_password.setText("");
+        //displays error message
+    }
+
     //closes window on successful login and opens main ui window
-    @FXML Button button_login;
     public void login() {
-        //opens main ui window
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("ui.fxml"));
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("UI");
-            stage.setScene(new Scene(root, 250, 250));
-            stage.show();
-            //closes current window
-            Stage closeStage = (Stage) button_login.getScene().getWindow();
-            closeStage.close();
+            Loader.load();
         }
-        catch (IOException e) {
-            e.printStackTrace();
+        catch(Exception e) {
         }
+        //retrieves the UIController
+        UIController UIController = Loader.getController();
+        //calls fillUsername method from UIController
+        UIController.fillUsername(textField_userName.getText());
+        Parent root = Loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+        //closes current window
+        Stage closeStage = (Stage) button_login.getScene().getWindow();
+        closeStage.close();
     }
 }
