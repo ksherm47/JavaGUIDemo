@@ -3,8 +3,11 @@ package sample;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import java.io.IOException;
+
+import java.io.*;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,7 +21,10 @@ public class PhasePaneController {
 
     @FXML private Button btn_execute;
     @FXML private Button btn_stop;
+    @FXML private Button btn_save;
+    @FXML private Button btn_load;
     private boolean[] pinStatuses = new boolean[16];
+    private PhasePaneConfiguration currentConfig;
 
     //changes color of button on press
     public void colorChange(Event evt) {
@@ -50,5 +56,38 @@ public class PhasePaneController {
     public void stopPhase() {
         btn_stop.setDisable(true);
         btn_execute.setDisable(false);
+    }
+
+    public void saveConfiguration() {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Save Phase Configuration");
+        File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());
+
+        PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
+        String password = getPasswordDialog();
+        try {
+            cfg.savePassword(password);
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileToSave));
+            oos.writeObject(cfg);
+            oos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadConfiguration() {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Load Phase Configuration");
+        File fileToLoad = chooser.showOpenDialog(btn_load.getScene().getWindow());
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileToLoad));
+            currentConfig = (PhasePaneConfiguration) ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getPasswordDialog() {
+        return "";
     }
 }
