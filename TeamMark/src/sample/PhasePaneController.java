@@ -58,10 +58,13 @@ public class PhasePaneController {
         btn_execute.setDisable(false);
     }
 
-    public void saveConfiguration() {
+    public void saveConfiguration() throws IOException {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Save Phase Configuration");
         File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());
+        if(!fileToSave.renameTo(new File(fileToSave.getName() + ".pcfg"))) {
+            throw new IOException("File could not be successfully saved.");
+        }
 
         PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
         String password = getPasswordDialog();
@@ -77,6 +80,7 @@ public class PhasePaneController {
 
     public void loadConfiguration() {
         FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PHASE CFG FILES (*.pcfg)", "*.pcfg"));
         chooser.setTitle("Load Phase Configuration");
         File fileToLoad = chooser.showOpenDialog(btn_load.getScene().getWindow());
         try {
