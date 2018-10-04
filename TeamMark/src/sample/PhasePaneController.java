@@ -61,16 +61,19 @@ public class PhasePaneController {
     public void saveConfiguration() throws IOException {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Save Phase Configuration");
-        File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());  // TODO error here
-        if(!fileToSave.renameTo(new File(fileToSave.getName() + ".pcfg"))) {
-            throw new IOException("File could not be successfully saved.");
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PCFG","*.pcfg"));
+        chooser.setInitialFileName(".pcfg");
+        File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());
+
+        if(!fileToSave.getName().contains(".pcgf")) {
+            fileToSave.renameTo(new File(fileToSave.getName() + ".pcgf"));
         }
 
         PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
         String password = getPasswordDialog();
 
         if (password == "") {
-            // TODO create error message
+            // TODO Do we want to allow empty passwords? I think we should.
         }
 
         try {
@@ -109,6 +112,8 @@ public class PhasePaneController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+
+        // TODO needs to pause execution until a password is returned from the form
 
         return "";
     }
