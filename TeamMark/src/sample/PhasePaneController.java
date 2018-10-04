@@ -61,13 +61,18 @@ public class PhasePaneController {
     public void saveConfiguration() throws IOException {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Save Phase Configuration");
-        File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());
+        File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());  // TODO error here
         if(!fileToSave.renameTo(new File(fileToSave.getName() + ".pcfg"))) {
             throw new IOException("File could not be successfully saved.");
         }
 
         PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
         String password = getPasswordDialog();
+
+        if (password == "") {
+            // TODO create error message
+        }
+
         try {
             cfg.savePassword(password);
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileToSave));
@@ -92,6 +97,19 @@ public class PhasePaneController {
     }
 
     private String getPasswordDialog() {
+        // open password dialog
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("save_pass_pane.fxml"));
+        try {
+            Loader.load();
+        }
+        catch(Exception e) {
+        }
+        Parent root = Loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
         return "";
     }
 }
