@@ -7,9 +7,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import javafx.event.Event;
 import javafx.scene.control.Control;
@@ -22,6 +19,23 @@ public class PhasePaneController {
     @FXML private Button btn_stop;
     @FXML private Button btn_save;
     @FXML private Button btn_load;
+    @FXML private Button btn_pin1;
+    @FXML private Button btn_pin2;
+    @FXML private Button btn_pin3;
+    @FXML private Button btn_pin4;
+    @FXML private Button btn_pin5;
+    @FXML private Button btn_pin6;
+    @FXML private Button btn_pin7;
+    @FXML private Button btn_pin8;
+    @FXML private Button btn_pin9;
+    @FXML private Button btn_pin10;
+    @FXML private Button btn_pin11;
+    @FXML private Button btn_pin12;
+    @FXML private Button btn_pin13;
+    @FXML private Button btn_pin14;
+    @FXML private Button btn_pin15;
+    @FXML private Button btn_pin16;
+    
     private boolean[] pinStatuses = new boolean[16];
     private PhasePaneConfiguration currentConfig;
     private PromptController promptController = new PromptController();
@@ -48,14 +62,50 @@ public class PhasePaneController {
         }
     }
 
+    //disables pins and execute buttons
+    //enables stop button
     public void executePhase() {
         btn_stop.setDisable(false);
         btn_execute.setDisable(true);
+        btn_pin1.setDisable(true);
+        btn_pin2.setDisable(true);
+        btn_pin3.setDisable(true);
+        btn_pin4.setDisable(true);
+        btn_pin5.setDisable(true);
+        btn_pin6.setDisable(true);
+        btn_pin7.setDisable(true);
+        btn_pin8.setDisable(true);
+        btn_pin9.setDisable(true);
+        btn_pin10.setDisable(true);
+        btn_pin11.setDisable(true);
+        btn_pin12.setDisable(true);
+        btn_pin13.setDisable(true);
+        btn_pin14.setDisable(true);
+        btn_pin15.setDisable(true);
+        btn_pin16.setDisable(true);
     }
 
+    //disables stop button
+    //enables pins and execute butotn
     public void stopPhase() {
         btn_stop.setDisable(true);
         btn_execute.setDisable(false);
+        btn_pin1.setDisable(false);
+        btn_pin2.setDisable(false);
+        btn_pin3.setDisable(false);
+        btn_pin4.setDisable(false);
+        btn_pin5.setDisable(false);
+        btn_pin6.setDisable(false);
+        btn_pin7.setDisable(false);
+        btn_pin8.setDisable(false);
+        btn_pin9.setDisable(false);
+        btn_pin10.setDisable(false);
+        btn_pin11.setDisable(false);
+        btn_pin12.setDisable(false);
+        btn_pin13.setDisable(false);
+        btn_pin14.setDisable(false);
+        btn_pin15.setDisable(false);
+        btn_pin16.setDisable(false);
     }
 
     public void saveConfiguration() throws IOException {
