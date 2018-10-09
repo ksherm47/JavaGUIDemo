@@ -18,13 +18,13 @@ import javafx.scene.control.Button;
 
 public class PhasePaneController {
 
-
     @FXML private Button btn_execute;
     @FXML private Button btn_stop;
     @FXML private Button btn_save;
     @FXML private Button btn_load;
     private boolean[] pinStatuses = new boolean[16];
     private PhasePaneConfiguration currentConfig;
+    private PromptController promptController = new PromptController();
 
     //changes color of button on press
     public void colorChange(Event evt) {
@@ -70,7 +70,8 @@ public class PhasePaneController {
         }
 
         PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
-        String password = getPasswordDialog();
+        promptController.showPrompt();
+        String password = promptController.getPassword();
 
         if (password == "") {
             // TODO Do we want to allow empty passwords? I think we should.
@@ -118,3 +119,4 @@ public class PhasePaneController {
         return "";
     }
 }
+
