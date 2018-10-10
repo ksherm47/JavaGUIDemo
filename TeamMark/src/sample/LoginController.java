@@ -61,6 +61,7 @@ public class LoginController {
         Parent root = Loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Phase Select");
         stage.show();
         //closes current window
         Stage closeStage = (Stage) button_login.getScene().getWindow();

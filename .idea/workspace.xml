@@ -7,22 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ec03191-7155-4a60-9b3f-6be4a52f245d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/PhasePaneConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/PhasePaneController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/UIController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/load_pass_pane.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/login.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/phase_pane.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/save_pass_pane.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/TeamMark/sample/ui.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/PhasePaneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/PhasePaneController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/UIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/UIController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/phase_pane.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/phase_pane.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/ui.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/out/production/add-phase/sample/ui.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/PhasePaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/PhasePaneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/UIController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/phase_pane.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/phase_pane.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamMark/src/sample/ui.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TeamMark/src/sample/ui.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,18 +76,31 @@
     <session id="-1655920636">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="332" />
+          <entry key="fxml" value="56" />
+          <entry key="java" value="1884" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="332" />
+          <entry key="JAVA" value="1884" />
+          <entry key="XML" value="56" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="3" />
         </counts>
       </usages-collector>
     </session>
@@ -102,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            <state relative-caret-position="238">
+              <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,20 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/UIController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+            <state relative-caret-position="796">
+              <caret line="63" column="39" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,13 +132,38 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/PhasePaneController.java">
+        <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/UIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-272">
-              <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+            <state relative-caret-position="405">
+              <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1350#1351#0" expanded="true" />
+                <element signature="e#1408#1409#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/PhasePaneController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="31">
+              <caret line="188" column="25" selection-start-line="188" selection-start-column="25" selection-end-line="188" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#executePhase#0;class#PhasePaneController#0" />
+                <element signature="method#stopPhase#0;class#PhasePaneController#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/PhasePaneConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -160,8 +181,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/ui.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="153">
+              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -170,8 +191,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/phase_pane.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-627">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="374">
+              <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="28" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -198,14 +219,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/TeamMark/src/sample/ui.fxml" />
         <option value="$PROJECT_DIR$/TeamMark/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/TeamMark/src/sample/login.fxml" />
-        <option value="$PROJECT_DIR$/TeamMark/src/sample/UIController.java" />
-        <option value="$PROJECT_DIR$/TeamMark/src/sample/Main.java" />
-        <option value="$PROJECT_DIR$/TeamMark/src/sample/LoginController.java" />
         <option value="$PROJECT_DIR$/TeamMark/src/sample/phase_pane.fxml" />
         <option value="$PROJECT_DIR$/TeamMark/src/sample/PhasePaneController.java" />
+        <option value="$PROJECT_DIR$/TeamMark/src/sample/ui.fxml" />
+        <option value="$PROJECT_DIR$/TeamMark/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/TeamMark/src/sample/LoginController.java" />
+        <option value="$PROJECT_DIR$/TeamMark/src/sample/UIController.java" />
       </list>
     </option>
   </component>
@@ -226,42 +247,46 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="add-phase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="add-phase" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaGUIDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaGUIDemo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="add-phase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="add-phase" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaGUIDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaGUIDemo" type="462c0819:PsiDirectoryNode" />
               <item name="TeamMark" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="add-phase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="add-phase" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaGUIDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaGUIDemo" type="462c0819:PsiDirectoryNode" />
               <item name="TeamMark" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="add-phase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="add-phase" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaGUIDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaGUIDemo" type="462c0819:PsiDirectoryNode" />
               <item name="TeamMark" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaGUIDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537473545927" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539144625426" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -371,23 +396,39 @@
     <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/style.css" />
     <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/Controller.java" />
     <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/hi.fxml" />
-    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/Main.java">
+    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/PromptController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/ui.fxml">
+    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/PhasePaneConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="34">
+          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/phase_pane.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/PhasePaneController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="188" column="25" selection-start-line="188" selection-start-column="25" selection-end-line="188" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#executePhase#0;class#PhasePaneController#0" />
+            <element signature="method#stopPhase#0;class#PhasePaneController#0" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/login.fxml">
       <provider selected="true" editor-type-id="text-editor">
@@ -397,10 +438,28 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/ui.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+        <state relative-caret-position="796">
+          <caret line="63" column="39" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -409,28 +468,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/UIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        <state relative-caret-position="405">
+          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/phase_pane.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-627">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TeamMark/src/sample/PhasePaneController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1350#1351#0" expanded="true" />
+            <element signature="e#1408#1409#0" expanded="true" />
           </folding>
         </state>
       </provider>
