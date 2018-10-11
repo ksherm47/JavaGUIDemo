@@ -52,7 +52,7 @@ public class UIController {
             //clear pane
             phasePane.getChildren().clear();
             //add phase 1 pane to phasePane
-            phasePane.getChildren().add(phaseArray[0]);
+            phasePane.getChildren().add(phaseArray[Integer.parseInt(((Button)evt.getSource()).getId().substring(9)) - 1]);
             //disables phase 1 button
             btn_phase1.setDisable(true);
             //enables phase 2 and 3 button
@@ -64,7 +64,7 @@ public class UIController {
             //clear pane
             phasePane.getChildren().clear();
             //add phase 2 pane to phasePane
-            phasePane.getChildren().add(phaseArray[1]);
+            phasePane.getChildren().add(phaseArray[Integer.parseInt(((Button)evt.getSource()).getId().substring(9)) - 1]);
             //disables phase 2 button
             btn_phase2.setDisable(true);
             //enables phase 1 and 3 button
@@ -76,7 +76,7 @@ public class UIController {
             //clear pane
             phasePane.getChildren().clear();
             //add phase 3 pane to phasePane
-            phasePane.getChildren().add(phaseArray[2]);
+            phasePane.getChildren().add(phaseArray[Integer.parseInt(((Button)evt.getSource()).getId().substring(9)) - 1]);
             //disables phase 3 button
             btn_phase3.setDisable(true);
             //enables phase 1 and 2 button
