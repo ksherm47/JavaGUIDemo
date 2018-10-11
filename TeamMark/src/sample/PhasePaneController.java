@@ -16,9 +16,6 @@ public class PhasePaneController {
 
     @FXML private Button btn_execute;
     @FXML private Button btn_stop;
-    @FXML private Button btn_phase1;
-    @FXML private Button btn_phase2;
-    @FXML private Button btn_phase3;
     @FXML private Button btn_save;
     @FXML private Button btn_load;
     @FXML private Button btn_pin1;
@@ -41,21 +38,6 @@ public class PhasePaneController {
     private boolean[] pinStatuses = new boolean[16];
     private PhasePaneConfiguration currentConfig;
     private PromptController promptController = new PromptController();
-
-    //onload function
-    @FXML
-    protected void initialize() {
-        Stage currentStage = (Stage)btn_phase1.getScene().getWindow();
-        if (currentStage.getTitle().equals("Phase 1")) {
-            btn_phase1.setDisable(true);
-        }
-        if (currentStage.getTitle().equals("Phase 2")) {
-            btn_phase2.setDisable(true);
-        }
-        if(currentStage.getTitle().equals("Phase 3")) {
-            btn_phase3.setDisable(true);
-        }
-    }
 
     //changes color of button on press
     public void colorChange(Event evt) {
@@ -103,7 +85,7 @@ public class PhasePaneController {
     }
 
     //disables stop button
-    //enables pins and execute butotn
+    //enables pins and execute button
     public void stopPhase() {
         btn_stop.setDisable(true);
         btn_execute.setDisable(false);
@@ -184,35 +166,6 @@ public class PhasePaneController {
         // TODO needs to pause execution until a password is returned from the form
 
         return "";
-    }
-
-    //opens phase windows
-    public void openPhase(Event evt) {
-        FXMLLoader Loader = new FXMLLoader();
-        Loader.setLocation(getClass().getResource("phase_pane.fxml"));
-        try {
-            Loader.load();
-        }
-        catch(Exception e) {
-        }
-        Parent root = Loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        //determine title of opened stage
-        if(((Button)evt.getSource()).getId().equals("btn_phase1")) {
-            stage.setTitle("Phase 1");
-        }
-
-        else if (((Button)evt.getSource()).getId().equals("btn_phase2")) {
-            stage.setTitle("Phase 2");
-        }
-        else if (((Button)evt.getSource()).getId().equals("btn_phase3")) {
-            stage.setTitle("Phase 3");
-        }
-        stage.show();
-        //closes current window
-        Stage closeStage = (Stage) btn_phase1.getScene().getWindow();
-        closeStage.close();
     }
 }
 

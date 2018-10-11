@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane id="AnchorPane" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PhasePaneController">
-  <Button fx:id="btn_execute" layoutX="78.0" layoutY="410.0" mnemonicParsing="false" onAction="#executePhase" prefHeight="56.0" prefWidth="179.0" text="Execute Phase" />
-  <Button fx:id="btn_stop" disable="true" layoutX="358.0" layoutY="410.0" mnemonicParsing="false" onAction="#stopPhase" prefHeight="56.0" prefWidth="179.0" text="Stop Phase" />
+  <Button fx:id="btn_execute" layoutX="78.0" layoutY="320.0" mnemonicParsing="false" onAction="#executePhase" prefHeight="56.0" prefWidth="179.0" text="Execute Phase" />
+  <Button fx:id="btn_stop" disable="true" layoutX="300.0" layoutY="320.0" mnemonicParsing="false" onAction="#stopPhase" prefHeight="56.0" prefWidth="179.0" text="Stop Phase" />
   <TextArea layoutX="512.0" layoutY="95.0" prefHeight="80.0" prefWidth="114.0" text="&#10;&#10;&#10;  Voltage Reading" wrapText="true" />
   <TextArea layoutX="512.0" layoutY="175.0" prefHeight="80.0" prefWidth="114.0" text="&#10;&#10;&#10;  Current Reading" wrapText="true" />
   <TextArea layoutX="512.0" layoutY="15.0" prefHeight="80.0" prefWidth="114.0" text="&#10;&#10;&#10;Power Reading: Voltage x Current" wrapText="true" />
-  <GridPane layoutX="58.0" layoutY="73.0" prefHeight="297.0" prefWidth="432.0">
+  <GridPane layoutX="35" layoutY="0" prefHeight="297.0" prefWidth="432.0">
     <Button fx:id="btn_pin1" mnemonicParsing="false" onAction="#colorChange" prefHeight="44.0" prefWidth="97.0" text="Pin1" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
     <Button fx:id="btn_pin2" mnemonicParsing="false" onAction="#colorChange" prefHeight="44.0" prefWidth="97.0" text="Pin 2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
     <Button fx:id="btn_pin3" mnemonicParsing="false" onAction="#colorChange" prefHeight="44.0" prefWidth="97.0" text="Pin 3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
@@ -45,7 +45,4 @@
   </GridPane>
   <Button fx:id="btn_save" layoutX="512.0" layoutY="330.0" mnemonicParsing="false" onAction="#saveConfiguration" prefHeight="44.0" prefWidth="114.0" text="Save" />
   <Button fx:id="btn_load" layoutX="512.0" layoutY="266.0" mnemonicParsing="false" onAction="#loadConfiguration" prefHeight="44.0" prefWidth="114.0" text="Load" />
-   <Button fx:id="btn_phase1" layoutX="78.0" layoutY="15.0" mnemonicParsing="false" onAction="#openPhase" prefHeight="44.0" prefWidth="114.0" text="Phase 1" />
-   <Button fx:id="btn_phase2" layoutX="217.0" layoutY="15.0" mnemonicParsing="false" onAction="#openPhase" prefHeight="44.0" prefWidth="114.0" text="Phase 2" />
-   <Button fx:id="btn_phase3" layoutX="358.0" layoutY="15.0" mnemonicParsing="false" onAction="#openPhase" prefHeight="44.0" prefWidth="114.0" text="Phase 3" />
 </AnchorPane>
