@@ -37,7 +37,6 @@ public class PhasePaneController {
     
     private boolean[] pinStatuses = new boolean[16];
     private PhasePaneConfiguration currentConfig;
-    private PromptController promptController = new PromptController();
 
     //changes color of button on press
     public void colorChange(Event evt) {
@@ -111,7 +110,6 @@ public class PhasePaneController {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Save Phase Configuration");
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PCFG","*.pcfg"));
-        chooser.setInitialFileName(".pcfg");
         File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());
 
         if(!fileToSave.getName().contains(".pcgf")) {
@@ -119,8 +117,7 @@ public class PhasePaneController {
         }
 
         PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
-        promptController.showPrompt();
-        String password = promptController.getPassword();
+        String password = getPasswordDialog();
 
         if (password == "") {
             // TODO Do we want to allow empty passwords? I think we should.
@@ -151,21 +148,20 @@ public class PhasePaneController {
 
     private String getPasswordDialog() {
         // open password dialog
-        FXMLLoader Loader = new FXMLLoader();
-        Loader.setLocation(getClass().getResource("save_pass_pane.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("save_pass_pane.fxml"));
         try {
-            Loader.load();
+            loader.load();
         }
         catch(Exception e) {
         }
-        Parent root = Loader.getRoot();
+        Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.show();
+        stage.showAndWait();
+        return ((PromptController)loader.getController()).getPassword();
 
         // TODO needs to pause execution until a password is returned from the form
-
-        return "";
     }
 }
 
