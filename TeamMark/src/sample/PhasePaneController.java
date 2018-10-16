@@ -81,6 +81,9 @@ public class PhasePaneController {
         btn_pin14.setDisable(true);
         btn_pin15.setDisable(true);
         btn_pin16.setDisable(true);
+
+        // TODO call C script with activated pins here
+
     }
 
     //disables stop button
@@ -104,6 +107,8 @@ public class PhasePaneController {
         btn_pin14.setDisable(false);
         btn_pin15.setDisable(false);
         btn_pin16.setDisable(false);
+
+        // TODO Tell C script to stop execution
     }
 
     public void saveConfiguration() throws IOException {
@@ -140,7 +145,10 @@ public class PhasePaneController {
         File fileToLoad = chooser.showOpenDialog(btn_load.getScene().getWindow());
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileToLoad));
+            // TODO ask user to enter pin for the loaded config, if correct:
             currentConfig = (PhasePaneConfiguration) ois.readObject();
+            // TODO if not correct, show error message and let them try again
+
         } catch (Exception e) {
             e.printStackTrace();
         }
