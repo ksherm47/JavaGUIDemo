@@ -34,6 +34,9 @@ public class PhasePaneController {
     @FXML private Button btn_pin14;
     @FXML private Button btn_pin15;
     @FXML private Button btn_pin16;
+
+    private Button[] pinButtons = { btn_pin1, btn_pin2, btn_pin3, btn_pin4, btn_pin5, btn_pin6, btn_pin7, btn_pin8,
+                                    btn_pin9, btn_pin10, btn_pin11, btn_pin12, btn_pin13, btn_pin14, btn_pin15, btn_pin16};
     
     private boolean[] pinStatuses = new boolean[16];
     private PhasePaneConfiguration currentConfig;
@@ -65,22 +68,9 @@ public class PhasePaneController {
     public void executePhase() {
         btn_stop.setDisable(false);
         btn_execute.setDisable(true);
-        btn_pin1.setDisable(true);
-        btn_pin2.setDisable(true);
-        btn_pin3.setDisable(true);
-        btn_pin4.setDisable(true);
-        btn_pin5.setDisable(true);
-        btn_pin6.setDisable(true);
-        btn_pin7.setDisable(true);
-        btn_pin8.setDisable(true);
-        btn_pin9.setDisable(true);
-        btn_pin10.setDisable(true);
-        btn_pin11.setDisable(true);
-        btn_pin12.setDisable(true);
-        btn_pin13.setDisable(true);
-        btn_pin14.setDisable(true);
-        btn_pin15.setDisable(true);
-        btn_pin16.setDisable(true);
+        for(Button b : pinButtons) {
+            b.setDisable(true);
+        }
 
         // TODO call C script with activated pins here
 
@@ -91,23 +81,9 @@ public class PhasePaneController {
     public void stopPhase() {
         btn_stop.setDisable(true);
         btn_execute.setDisable(false);
-        btn_pin1.setDisable(false);
-        btn_pin2.setDisable(false);
-        btn_pin3.setDisable(false);
-        btn_pin4.setDisable(false);
-        btn_pin5.setDisable(false);
-        btn_pin6.setDisable(false);
-        btn_pin7.setDisable(false);
-        btn_pin8.setDisable(false);
-        btn_pin9.setDisable(false);
-        btn_pin10.setDisable(false);
-        btn_pin11.setDisable(false);
-        btn_pin12.setDisable(false);
-        btn_pin13.setDisable(false);
-        btn_pin14.setDisable(false);
-        btn_pin15.setDisable(false);
-        btn_pin16.setDisable(false);
-
+        for(Button b : pinButtons) {
+            b.setDisable(false);
+        }
         // TODO Tell C script to stop execution
     }
 
