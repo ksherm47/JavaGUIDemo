@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="add-phase:jar">
-    <output-path>$PROJECT_DIR$/TeamMark/out/artifacts/add_phase_jar</output-path>
-    <root id="archive" name="add-phase.jar">
-      <element id="module-output" name="add-phase" />
-    </root>
-  </artifact>
-</component>
