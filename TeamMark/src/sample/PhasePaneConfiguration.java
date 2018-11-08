@@ -49,4 +49,8 @@ public class PhasePaneConfiguration implements Serializable {
 
         return SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1").generateSecret(ks).getEncoded();
     }
+
+    public boolean[] getPins() {
+        return pins;
+    }
 }

@@ -68,12 +68,18 @@ public class PhasePaneController {
     public void executePhase() {
         btn_stop.setDisable(false);
         btn_execute.setDisable(true);
-        for(Button b : pinButtons) {
+        for(Button b : this.pinButtons) {
             b.setDisable(true);
         }
 
         // TODO call C script with activated pins here
-
+        int pinNumber = 0;
+        for (Boolean b : currentConfig.getPins()) {
+            if (b) {
+                callCScript(1, pinNumber);  // TODO Get what phase we're on
+            }
+            pinNumber = pinNumber + 1;
+        }
     }
 
     //disables stop button
@@ -99,10 +105,6 @@ public class PhasePaneController {
 
         PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
         String password = getPasswordDialog();
-
-        if (password == "") {
-            // TODO Do we want to allow empty passwords? I think we should.
-        }
 
         try {
             cfg.savePassword(password);
@@ -146,6 +148,74 @@ public class PhasePaneController {
         return ((PromptController)loader.getController()).getPassword();
 
         // TODO needs to pause execution until a password is returned from the form
+    }
+
+    private void callCScript(int phase,  int pin) {
+        String path = "PathToCompiledScript"; // TODO
+        String pinHexValue = convertPinValueToHex(phase, pin);
+
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder("gcc", path, Integer.toString(phase), Integer.toString(pin));
+            Process process = processBuilder.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String convertPinValueToHex(int phase, int pin) {
+        StringBuilder value = new StringBuilder();
+
+        switch (phase) {
+            case 1:
+                if (pin != 16) {
+                    value.append("2");
+                } else {
+                    return "30";
+                }
+                break;
+            case 2:
+                if (pin != 16) {
+                    value.append("4");
+                } else {
+                    return "50";
+                }
+                break;
+            case 3:
+                if (pin != 16) {
+                    value.append("6");
+                } else {
+                    return "70";
+                }
+                break;
+        }
+
+        if (pin < 10) {
+            value.append(pin);
+        } else {
+            switch (pin) {
+                case 10:
+                    value.append("A");
+                    break;
+                case 11:
+                    value.append("B");
+                    break;
+                case 12:
+                    value.append("C");
+                    break;
+                case 13:
+                    value.append("D");
+                    break;
+                case 14:
+                    value.append("E");
+                    break;
+                case 15:
+                    value.append("F");
+                    break;
+            }
+        }
+
+        System.out.println(value.toString());
+        return value.toString();
     }
 }
 
