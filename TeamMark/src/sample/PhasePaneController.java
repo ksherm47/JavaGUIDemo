@@ -11,6 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PhasePaneController {
 
@@ -35,8 +38,10 @@ public class PhasePaneController {
     @FXML private Button btn_pin15;
     @FXML private Button btn_pin16;
 
-    private Button[] pinButtons = { btn_pin1, btn_pin2, btn_pin3, btn_pin4, btn_pin5, btn_pin6, btn_pin7, btn_pin8,
-                                    btn_pin9, btn_pin10, btn_pin11, btn_pin12, btn_pin13, btn_pin14, btn_pin15, btn_pin16};
+    public List<Button> getPinButtons() {
+        return new ArrayList<Button>(
+                Arrays.asList(btn_pin1, btn_pin2, btn_pin3, btn_pin4, btn_pin5, btn_pin6, btn_pin7, btn_pin8, btn_pin9, btn_pin10, btn_pin11, btn_pin12, btn_pin13, btn_pin14, btn_pin15, btn_pin16));
+    }
     
     private boolean[] pinStatuses = new boolean[16];
     private PhasePaneConfiguration currentConfig;
@@ -68,18 +73,18 @@ public class PhasePaneController {
     public void executePhase() {
         btn_stop.setDisable(false);
         btn_execute.setDisable(true);
-        for(Button b : this.pinButtons) {
+        for(Button b : getPinButtons()) {
             b.setDisable(true);
         }
 
         // TODO call C script with activated pins here
         int pinNumber = 0;
-        for (Boolean b : currentConfig.getPins()) {
-            if (b) {
-                callCScript(1, pinNumber);  // TODO Get what phase we're on
-            }
-            pinNumber = pinNumber + 1;
-        }
+        //for (Boolean b : currentConfig.getPins()) { // TODO NullTargetInvocation
+        //    if (b) {
+        //        callCScript(1, pinNumber);  // TODO Get what phase we're on
+        //    }
+        //    pinNumber = pinNumber + 1;
+        //}
     }
 
     //disables stop button
@@ -87,7 +92,7 @@ public class PhasePaneController {
     public void stopPhase() {
         btn_stop.setDisable(true);
         btn_execute.setDisable(false);
-        for(Button b : pinButtons) {
+        for(Button b : getPinButtons()) {
             b.setDisable(false);
         }
         // TODO Tell C script to stop execution
