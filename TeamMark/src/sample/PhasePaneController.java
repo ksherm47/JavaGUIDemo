@@ -10,10 +10,13 @@ import javafx.scene.control.Control;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 public class PhasePaneController {
 
@@ -38,9 +41,14 @@ public class PhasePaneController {
     @FXML private Button btn_pin15;
     @FXML private Button btn_pin16;
 
+    private Map<Integer, Process> executeProcesses = new HashMap<Integer, Process>(); //Used to call hardware code
+
     public List<Button> getPinButtons() {
         return new ArrayList<Button>(
-                Arrays.asList(btn_pin1, btn_pin2, btn_pin3, btn_pin4, btn_pin5, btn_pin6, btn_pin7, btn_pin8, btn_pin9, btn_pin10, btn_pin11, btn_pin12, btn_pin13, btn_pin14, btn_pin15, btn_pin16));
+                Arrays.asList(btn_pin1, btn_pin2, btn_pin3, btn_pin4,
+                        btn_pin5, btn_pin6, btn_pin7, btn_pin8,
+                        btn_pin9, btn_pin10, btn_pin11, btn_pin12,
+                        btn_pin13, btn_pin14, btn_pin15, btn_pin16));
     }
     
     private boolean[] pinStatuses = new boolean[16];
@@ -94,6 +102,9 @@ public class PhasePaneController {
         for(Button b : getPinButtons()) {
             b.setDisable(false);
         }
+        int phase = 1; //TODO get current phase. Right now just testing with phase 1.
+        Process process = executeProcesses.get(phase);
+        process.destroy();
         // TODO Tell C script to stop execution
     }
 
@@ -161,15 +172,16 @@ public class PhasePaneController {
             String c_file = "script.c";
             String output_exe = "activate_pin";
             // Compile the C code   TODO - This shouldn't be done every time, check if the compiled file exists first
-            Process compile = new ProcessBuilder("gcc", "-o " + output_exe,  c_file).start();
-            if (compile.exitValue() == -1) {
-                // TODO - Compile failed
-            }
-            // Call the compiled code with the computed hex value
+//            Process compile = new ProcessBuilder("gcc", "-o " + output_exe,  c_file).start();
+//            if (compile.exitValue() == -1) {
+//                // TODO - Compile failed
+//            }
+//            // Call the compiled code with the computed hex value
             Process execute = new ProcessBuilder("./" + output_exe + " " + pinHexValue).start();
-            if (execute.exitValue() == -1) {
-                // TODO - Call failed
-            }
+//            if (execute.exitValue() == -1) {
+//                // TODO - Call failed
+//            }
+            executeProcesses.put(phase, execute);
         } catch (Exception e) {
             e.printStackTrace();
         }
