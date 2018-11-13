@@ -77,14 +77,13 @@ public class PhasePaneController {
             b.setDisable(true);
         }
 
-        // TODO call C script with activated pins here
-        int pinNumber = 0;
-        //for (Boolean b : currentConfig.getPins()) { // TODO NullTargetInvocation
-        //    if (b) {
-        //        callCScript(1, pinNumber);  // TODO Get what phase we're on
-        //    }
-        //    pinNumber = pinNumber + 1;
-        //}
+        int pinNumber = 1;
+        for (Boolean b : pinStatuses) {
+            if (b) {
+                callCScript(1, pinNumber);  // TODO Get what phase we're on
+            }
+            pinNumber = pinNumber + 1;
+        }
     }
 
     //disables stop button
@@ -156,12 +155,21 @@ public class PhasePaneController {
     }
 
     private void callCScript(int phase,  int pin) {
-        String path = "PathToCompiledScript"; // TODO
         String pinHexValue = convertPinValueToHex(phase, pin);
 
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("gcc", path, Integer.toString(phase), Integer.toString(pin));
-            Process process = processBuilder.start();
+            String c_file = "script.c";
+            String output_exe = "activate_pin";
+            // Compile the C code   TODO - This shouldn't be done every time, check if the compiled file exists first
+            Process compile = new ProcessBuilder("gcc", "-o " + output_exe,  c_file).start();
+            if (compile.exitValue() == -1) {
+                // TODO - Compile failed
+            }
+            // Call the compiled code with the computed hex value
+            Process execute = new ProcessBuilder("./" + output_exe + " " + pinHexValue).start();
+            if (execute.exitValue() == -1) {
+                // TODO - Call failed
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
