@@ -1,5 +1,6 @@
 package sample;
 
+import com.google.gson.Gson;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,12 +11,7 @@ import javafx.scene.control.Control;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class PhasePaneController {
@@ -111,11 +107,11 @@ public class PhasePaneController {
     public void saveConfiguration() throws IOException {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Save Phase Configuration");
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PCFG","*.pcfg"));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON","*.json"));
         File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());
 
-        if(!fileToSave.getName().contains(".pcgf")) {
-            fileToSave.renameTo(new File(fileToSave.getName() + ".pcgf"));
+        if(!fileToSave.getName().contains(".json")) {
+            fileToSave.renameTo(new File(fileToSave.getName() + ".json"));
         }
 
         PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
@@ -123,9 +119,10 @@ public class PhasePaneController {
 
         try {
             cfg.savePassword(password);
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileToSave));
-            oos.writeObject(cfg);
-            oos.close();
+            Gson gson = new Gson();
+            PrintStream ps =  new PrintStream(new FileOutputStream(fileToSave));
+            ps.print(gson.toJson(cfg));
+            ps.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
