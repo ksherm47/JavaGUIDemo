@@ -33,14 +33,14 @@ public class LoginController {
         else {
             //INSERT CODE TO CONNECT TO DATABASE TO VALIDATE USERNAME AND PASSWORD
             //IF SUCCESSFUL CALL
-            connectToDatabase();
+            connectToDatabase(textField_userName.getText(), textField_password.getText());
             login();
         }
     }
 
     //clears text fields
     public void clear() {
-        //empty text field userw2 SCWANWQ1```````Name
+        //empty text field userName
         textField_userName.setText("");
         //empty text field password
         textField_password.setText("");
@@ -70,14 +70,14 @@ public class LoginController {
         closeStage.close();
     }
 
-    public void connectToDatabase() {
+    public void connectToDatabase(String username, String password) {
         //initialize connection variables
-        String host = "tcp:marksgroup.database.windows.net:1433";
+        String host = "marksgroup.database.windows.net:1433";
         String database = "Test";
-        String user = "serveradmin@marksgroup";
-        String password = "MarkTarakaiSucks!";
+        String dbuser = "serveradmin@marksgroup";
+        String dbpassword = "MarkTarakaiSucks!";
         String url = String.format("jdbc:sqlserver://%s;database=%s;user=%s;password=%s;encrypt=true;"
-                + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", host, database, user, password);
+                + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", host, database, dbuser, dbpassword);
         Connection connection = null;
 
         //check driver is installed
@@ -103,8 +103,17 @@ public class LoginController {
             //perform SQL queries
             try {
                 Statement statement = connection.createStatement();
-
-                //INSERT QUERY HERE
+                //INSERT SQL STATEMENT  IN THE QUOTES STATE.EXECUTEQUERY()
+                ResultSet results = statement.executeQuery();
+                while (results.next()) {
+                    String outputString =
+                            String.format(
+                                    "Data row = (%s, %s, %s)",
+                                    results.getString(1),
+                                    results.getString(2),
+                                    results.getString(3));
+                    System.out.println(outputString);
+                }
             }
             catch (SQLException e) {
                 System.out.println("Encountered an error when executing given sql statement. " + e);
