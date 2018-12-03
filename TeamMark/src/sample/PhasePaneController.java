@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class PhasePaneController {
@@ -50,7 +52,7 @@ public class PhasePaneController {
     }
     
     private boolean[] pinStatuses = new boolean[16];
-    private PhasePaneConfiguration currentConfig;
+    PhasePaneConfiguration currentConfig;
 
     //populates phaseNumber String variable
     public void getPhaseNumber(String p) {
@@ -114,7 +116,7 @@ public class PhasePaneController {
     public void saveConfiguration() throws IOException {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Save Phase Configuration");
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON","*.json"));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON FILES","*.json"));
         File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());
 
         if(!fileToSave.getName().contains(".json")) {
@@ -137,13 +139,23 @@ public class PhasePaneController {
 
     public void loadConfiguration() {
         FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PHASE CFG FILES (*.pcfg)", "*.pcfg"));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON", "*.json"));
         chooser.setTitle("Load Phase Configuration");
         File fileToLoad = chooser.showOpenDialog(btn_load.getScene().getWindow());
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileToLoad));
+            Gson gson = new Gson();
+            String jsonString = new String(Files.readAllBytes(Paths.get(fileToLoad.getAbsolutePath())));
+            currentConfig = gson.fromJson(jsonString, PhasePaneConfiguration.class);
             // TODO ask user to enter pin for the loaded config, if correct:
-            currentConfig = (PhasePaneConfiguration) ois.readObject();
+            pinStatuses = currentConfig.getPins();
+            List<Button> pinButtons = getPinButtons();
+            for(int i = 0; i < pinStatuses.length; i++) {
+                if(pinStatuses[i]) {
+                    pinButtons.get(i).setStyle("-fx-base: #b6e7c9;");
+                } else {
+                    pinButtons.get(i).setStyle("");
+                }
+            }
             // TODO if not correct, show error message and let them try again
 
         } catch (Exception e) {
@@ -157,8 +169,8 @@ public class PhasePaneController {
         loader.setLocation(getClass().getResource("save_pass_pane.fxml"));
         try {
             loader.load();
-        }
-        catch(Exception e) {
+        } catch(Exception e) {
+            e.printStackTrace();
         }
         Parent root = loader.getRoot();
         Stage stage = new Stage();
