@@ -23,7 +23,7 @@ public class UIController {
         //fills array up to array length with panes
         for(int i = 0; i < phaseArray.length; i++) {
             //fills array position i with pane from makePane method
-            phaseArray[i] = makePane();
+            phaseArray[i] = makePane(i+1);
         }
         //fills phasePane with phase 1 by default
         phasePane.getChildren().add(phaseArray[0]);
@@ -32,7 +32,7 @@ public class UIController {
     }
 
     //makes and returns a pane
-    public Pane makePane() {
+    public Pane makePane(Integer phaseNumber) {
         FXMLLoader Loader = new FXMLLoader();
         Loader.setLocation(getClass().getResource("phase_pane.fxml"));
         try {
@@ -40,8 +40,11 @@ public class UIController {
         }
         catch(Exception e) {
         }
+        //retrieves PhasePaneController
+        PhasePaneController PhasePaneController = Loader.getController();
+        //calls getPhaseNumber method to determine phase number
+        PhasePaneController.getPhaseNumber(phaseNumber.toString());
         Pane root = Loader.getRoot();
-
         return root;
     }
 

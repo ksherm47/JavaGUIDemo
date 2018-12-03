@@ -37,6 +37,8 @@ public class PhasePaneController {
     @FXML private Button btn_pin15;
     @FXML private Button btn_pin16;
 
+    String phaseNumber;
+
     private Map<Integer, Process> executeProcesses = new HashMap<Integer, Process>(); //Used to call hardware code
 
     public List<Button> getPinButtons() {
@@ -49,6 +51,11 @@ public class PhasePaneController {
     
     private boolean[] pinStatuses = new boolean[16];
     private PhasePaneConfiguration currentConfig;
+
+    //populates phaseNumber String variable
+    public void getPhaseNumber(String p) {
+        phaseNumber = p;
+    }
 
     //changes color of button on press
     public void colorChange(Event evt) {
