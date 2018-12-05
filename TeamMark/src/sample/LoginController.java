@@ -30,7 +30,7 @@ public class LoginController {
         USER_NOT_ACTIVATED,
         INCORRECT_PASSWORD,
         NO_DB_CONNECTION,
-        GENERAL_ERROR,
+        INTERNAL_ERROR,
         GOOD}
 
     //client side validation.
@@ -45,8 +45,7 @@ public class LoginController {
             textField_password.setText("");
             //displays error message
             label_error.setText("Please fill out all fields.");
-        }
-        else {
+        } else {
             //INSERT CODE TO CONNECT TO DATABASE TO VALIDATE USERNAME AND PASSWORD
             //IF SUCCESSFUL CALL
             ReturnCode rc = validateLogin(textField_userName.getText(), textField_password.getText());
@@ -60,7 +59,7 @@ public class LoginController {
                 label_error.setText("Incorrect password");
             } else if(rc == ReturnCode.NO_DB_CONNECTION) {
                 label_error.setText("Could not connect to database.");
-            } else if(rc == ReturnCode.GENERAL_ERROR) {
+            } else if(rc == ReturnCode.INTERNAL_ERROR) {
                 label_error.setText("Internal error occured.");
             }
         }
@@ -167,19 +166,18 @@ public class LoginController {
                 String s1 = new String(encryptedAttemptBase64);
                 return s1.equals(new String(passwordHash)) ? ReturnCode.GOOD : ReturnCode.INCORRECT_PASSWORD;
             }
-            catch (SQLException e)  {
-                System.out.println("Encountered an error when executing given sql statement. " + e);
-            } catch (NoSuchAlgorithmException nsae) {
-                nsae.printStackTrace();
-            } catch (InvalidKeySpecException ikse) {
-                ikse.printStackTrace();
+            catch (SQLException ex)  {
+                System.out.println("Encountered an error when executing given sql statement. " + ex);
+                return ReturnCode.INTERNAL_ERROR;
+            }
+            catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                ex.printStackTrace();
+                return ReturnCode.INTERNAL_ERROR;
             }
         }
         else {
             System.out.println("Failed to create connection to database.");
+            return ReturnCode.NO_DB_CONNECTION;
         }
-
-        System.out.println("Execution finished.");
-        return ReturnCode.GENERAL_ERROR;
     }
 }
