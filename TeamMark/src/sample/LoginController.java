@@ -130,10 +130,10 @@ public class LoginController {
 
             //perform SQL queries
             try {
-                Statement statement = connection.createStatement();
-                ResultSet results = statement.executeQuery("SELECT UI_PASSWORD, IS_ACTIVATED FROM " +
-                                "AUTH_USER JOIN PROFILE ON ID=USER_ID " +
-                                "WHERE" + " USERNAME =\'" + username + "\';");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT UI_PASSWORD, IS_ACTIVATED FROM " +
+                        "AUTH_USER JOIN PROFILE ON ID=USER_ID WHERE USERNAME = ?;");
+                preparedStatement.setString(1, username);
+                ResultSet results = preparedStatement.executeQuery();
 
                 //YOU CAN USE THE LOOP BELOW TO SHOW THE FULL CONTENTS OF ANY ARBITRARY QUERY
 //                ResultSet results = statement.executeQuery("SELECT * FROM PROFILE JOIN AUTH_USER ON ID=USER_ID;");
