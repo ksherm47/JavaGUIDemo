@@ -1,6 +1,12 @@
 package sample;
 
+import java.nio.charset.Charset;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.sql.*;
+import java.util.Base64;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,12 +16,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+
 
 public class LoginController {
     @FXML TextField textField_userName;
     @FXML TextField textField_password;
     @FXML Label label_error;
     @FXML Button button_login;
+
+    private enum ReturnCode {USER_DOES_NOT_EXIST,
+        USER_NOT_ACTIVATED,
+        INCORRECT_PASSWORD,
+        NO_DB_CONNECTION,
+        GENRERAL_ERROR,
+        GOOD}
 
     //client side validation.
     //ensure username and password is not empty
@@ -33,8 +49,20 @@ public class LoginController {
         else {
             //INSERT CODE TO CONNECT TO DATABASE TO VALIDATE USERNAME AND PASSWORD
             //IF SUCCESSFUL CALL
-            connectToDatabase(textField_userName.getText(), textField_password.getText());
-            login();
+            ReturnCode rc = validateLogin(textField_userName.getText(), textField_password.getText());
+            if(rc == ReturnCode.GOOD) {
+                login();
+            } else if(rc == ReturnCode.USER_DOES_NOT_EXIST) {
+                label_error.setText("Username not recognized");
+            } else if(rc == ReturnCode.USER_NOT_ACTIVATED) {
+                label_error.setText("User is not activated");
+            } else if(rc == ReturnCode.INCORRECT_PASSWORD) {
+                label_error.setText("Incorrect password");
+            } else if(rc == ReturnCode.NO_DB_CONNECTION) {
+                label_error.setText("Could not connect to database.");
+            } else if(rc == ReturnCode.GENRERAL_ERROR) {
+                label_error.setText("Internal error occured.");
+            }
         }
     }
 
@@ -70,7 +98,7 @@ public class LoginController {
         closeStage.close();
     }
 
-    public void connectToDatabase(String username, String password) {
+    private ReturnCode validateLogin(String username, String attemptedPassword) {
         //initialize connection variables
         String host = "marksgroup.database.windows.net:1433";
         String database = "Test";
@@ -95,6 +123,7 @@ public class LoginController {
         }
         catch (SQLException e) {
             System.out.println("Failed to create connection to database " + e);
+            return ReturnCode.NO_DB_CONNECTION;
         }
 
         if(connection != null) {
@@ -103,20 +132,48 @@ public class LoginController {
             //perform SQL queries
             try {
                 Statement statement = connection.createStatement();
-                //INSERT SQL STATEMENT  IN THE QUOTES STATE.EXECUTEQUERY()
-                ResultSet results = statement.executeQuery();
-                while (results.next()) {
-                    String outputString =
-                            String.format(
-                                    "Data row = (%s, %s, %s)",
-                                    results.getString(1),
-                                    results.getString(2),
-                                    results.getString(3));
-                    System.out.println(outputString);
+                ResultSet results = statement.executeQuery("SELECT PASSWORD, IS_ACTIVATED FROM " +
+                                "AUTH_USER JOIN PROFILE ON ID=USER_ID " +
+                                "WHERE" + " USERNAME =\'" + username + "\';");
+
+                //YOU CAN USE THE LOOP BELOW TO SHOW THE FULL CONTENTS OF ANY ARBITRARY QUERY
+//                ResultSet results = statement.executeQuery("SELECT * FROM PROFILE JOIN AUTH_USER ON ID=USER_ID;");
+//                ResultSetMetaData rsmd = results.getMetaData();
+//                int columnsNumber = rsmd.getColumnCount();
+//                while (results.next()) {
+//                    for (int i = 1; i <= columnsNumber; i++) {
+//                        if (i > 1) System.out.print(",  ");
+//                        String columnValue = results.getString(i);
+//                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
+//                    }
+//                    System.out.println("");
+//                }
+                if(!results.next()) {
+                    return ReturnCode.USER_DOES_NOT_EXIST;
                 }
+
+                boolean isActivated = Boolean.parseBoolean(results.getString("IS_ACTIVATED"));
+                if(!isActivated) {
+                    return ReturnCode.USER_NOT_ACTIVATED;
+                }
+
+                String[] passwordFields = results.getString("PASSWORD").split("\\$");
+                int num_iterations = Integer.parseInt(passwordFields[1]);
+                byte[] salt = passwordFields[2].getBytes(Charset.forName("UTF-8")),
+                        passwordHash = passwordFields[3].getBytes(Charset.forName("UTF-8"));
+
+                KeySpec ks = new PBEKeySpec(attemptedPassword.toCharArray(), salt, num_iterations, 256);
+                byte[] encryptedAttempt = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256").generateSecret(ks).getEncoded();
+                byte[] encryptedAttemptBase64 = Base64.getEncoder().encode(encryptedAttempt);
+                String s1 = new String(encryptedAttemptBase64);
+                return s1.equals(new String(passwordHash)) ? ReturnCode.GOOD : ReturnCode.INCORRECT_PASSWORD;
             }
-            catch (SQLException e) {
+            catch (SQLException e)  {
                 System.out.println("Encountered an error when executing given sql statement. " + e);
+            } catch (NoSuchAlgorithmException nsae) {
+                nsae.printStackTrace();
+            } catch (InvalidKeySpecException ikse) {
+                ikse.printStackTrace();
             }
         }
         else {
@@ -124,5 +181,6 @@ public class LoginController {
         }
 
         System.out.println("Execution finished.");
+        return ReturnCode.GENRERAL_ERROR;
     }
 }
