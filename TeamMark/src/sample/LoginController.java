@@ -152,8 +152,7 @@ public class LoginController {
                     return ReturnCode.USER_DOES_NOT_EXIST;
                 }
 
-                boolean isActivated = Boolean.parseBoolean(results.getString("IS_ACTIVATED"));
-                if(!isActivated) {
+                if(!results.getString("IS_ACTIVATED").equals("1")) {
                     return ReturnCode.USER_NOT_ACTIVATED;
                 }
 
