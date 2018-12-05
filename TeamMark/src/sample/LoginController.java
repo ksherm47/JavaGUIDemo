@@ -30,7 +30,7 @@ public class LoginController {
         USER_NOT_ACTIVATED,
         INCORRECT_PASSWORD,
         NO_DB_CONNECTION,
-        GENRERAL_ERROR,
+        GENERAL_ERROR,
         GOOD}
 
     //client side validation.
@@ -60,7 +60,7 @@ public class LoginController {
                 label_error.setText("Incorrect password");
             } else if(rc == ReturnCode.NO_DB_CONNECTION) {
                 label_error.setText("Could not connect to database.");
-            } else if(rc == ReturnCode.GENRERAL_ERROR) {
+            } else if(rc == ReturnCode.GENERAL_ERROR) {
                 label_error.setText("Internal error occured.");
             }
         }
@@ -132,7 +132,7 @@ public class LoginController {
             //perform SQL queries
             try {
                 Statement statement = connection.createStatement();
-                ResultSet results = statement.executeQuery("SELECT PASSWORD, IS_ACTIVATED FROM " +
+                ResultSet results = statement.executeQuery("SELECT UI_PASSWORD, IS_ACTIVATED FROM " +
                                 "AUTH_USER JOIN PROFILE ON ID=USER_ID " +
                                 "WHERE" + " USERNAME =\'" + username + "\';");
 
@@ -157,7 +157,7 @@ public class LoginController {
                     return ReturnCode.USER_NOT_ACTIVATED;
                 }
 
-                String[] passwordFields = results.getString("PASSWORD").split("\\$");
+                String[] passwordFields = results.getString("UI_PASSWORD").split("\\$");
                 int num_iterations = Integer.parseInt(passwordFields[1]);
                 byte[] salt = passwordFields[2].getBytes(Charset.forName("UTF-8")),
                         passwordHash = passwordFields[3].getBytes(Charset.forName("UTF-8"));
@@ -181,6 +181,6 @@ public class LoginController {
         }
 
         System.out.println("Execution finished.");
-        return ReturnCode.GENRERAL_ERROR;
+        return ReturnCode.GENERAL_ERROR;
     }
 }
