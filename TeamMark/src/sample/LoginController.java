@@ -29,6 +29,7 @@ public class LoginController {
     private enum ReturnCode {USER_DOES_NOT_EXIST,
         USER_NOT_ACTIVATED,
         INCORRECT_PASSWORD,
+        PASSWORD_NOT_SET,
         NO_DB_CONNECTION,
         INTERNAL_ERROR,
         GOOD}
@@ -57,6 +58,8 @@ public class LoginController {
                 label_error.setText("User is not activated");
             } else if(rc == ReturnCode.INCORRECT_PASSWORD) {
                 label_error.setText("Incorrect password");
+            } else if(rc == ReturnCode.PASSWORD_NOT_SET) {
+                label_error.setText("Password not set");
             } else if(rc == ReturnCode.NO_DB_CONNECTION) {
                 label_error.setText("Could not connect to database.");
             } else if(rc == ReturnCode.INTERNAL_ERROR) {
@@ -159,7 +162,7 @@ public class LoginController {
                 }
 
                 if(results.getString("UI_PASSWORD").equals("")) {
-                    return ReturnCode.GOOD;
+                    return ReturnCode.PASSWORD_NOT_SET;
                 }
 
                 String[] passwordFields = results.getString("UI_PASSWORD").split("\\$");
