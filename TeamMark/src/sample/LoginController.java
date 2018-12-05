@@ -130,8 +130,11 @@ public class LoginController {
 
             //perform SQL queries
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT UI_PASSWORD, IS_ACTIVATED FROM " +
-                        "AUTH_USER JOIN PROFILE ON ID=USER_ID WHERE USERNAME = ?;");
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT UI_PASSWORD, IS_ACTIVATED " +
+                                "FROM AUTH_USER JOIN PROFILE " +
+                                "ON ID=USER_ID " +
+                                "WHERE USERNAME = ?;");
                 preparedStatement.setString(1, username);
                 ResultSet results = preparedStatement.executeQuery();
 
@@ -153,6 +156,10 @@ public class LoginController {
 
                 if(!results.getString("IS_ACTIVATED").equals("1")) {
                     return ReturnCode.USER_NOT_ACTIVATED;
+                }
+
+                if(results.getString("UI_PASSWORD").equals("")) {
+                    return ReturnCode.GOOD;
                 }
 
                 String[] passwordFields = results.getString("UI_PASSWORD").split("\\$");
