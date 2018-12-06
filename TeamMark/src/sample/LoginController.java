@@ -38,6 +38,7 @@ public class LoginController {
     }
 
     private boolean superUserLogin;
+    private int userID;
 
     //client side validation.
     //ensure username and password is not empty
@@ -56,7 +57,7 @@ public class LoginController {
             //IF SUCCESSFUL CALL
             ReturnCode rc = validateLogin(textField_userName.getText(), textField_password.getText());
             if(rc == ReturnCode.GOOD) {
-                login(superUserLogin);
+                login(userID, superUserLogin);
             } else if(rc == ReturnCode.USER_DOES_NOT_EXIST) {
                 label_error.setText("Username not recognized");
             } else if(rc == ReturnCode.USER_NOT_ACTIVATED) {
@@ -83,7 +84,7 @@ public class LoginController {
     }
 
     //closes window on successful login and opens main ui window
-    public void login(boolean superUser) {
+    public void login(int userID, boolean superUser) {
         FXMLLoader uiLoader = new FXMLLoader();
         uiLoader.setLocation(getClass().getResource("ui.fxml"));
         try {
@@ -95,7 +96,7 @@ public class LoginController {
         UIController uiController = uiLoader.getController();
         //calls fillUsername method from UIController
         uiController.fillUsername(textField_userName.getText());
-        uiController.initialize(superUser);
+        uiController.initialize(userID, superUser);
         Parent root = uiLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -140,7 +141,7 @@ public class LoginController {
             //perform SQL queries
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT UI_PASSWORD, IS_ACTIVATED, STATUS " +
+                        "SELECT UI_PASSWORD, IS_ACTIVATED, STATUS, USER_ID " +
                                 "FROM AUTH_USER JOIN PROFILE " +
                                 "ON ID=USER_ID " +
                                 "WHERE USERNAME = ?;");
@@ -148,6 +149,7 @@ public class LoginController {
                 ResultSet results = preparedStatement.executeQuery();
 
                 //YOU CAN USE THE LOOP BELOW TO SHOW THE FULL CONTENTS OF ANY ARBITRARY QUERY
+//                Statement statement = connection.createStatement();
 //                ResultSet results = statement.executeQuery("SELECT * FROM PROFILE JOIN AUTH_USER ON ID=USER_ID;");
 //                ResultSetMetaData rsmd = results.getMetaData();
 //                int columnsNumber = rsmd.getColumnCount();
@@ -171,7 +173,7 @@ public class LoginController {
                     return ReturnCode.PASSWORD_NOT_SET;
                 }
 
-                superUserLogin = !results.getString("STATUS").equals("ST");
+
 
                 String[] passwordFields = results.getString("UI_PASSWORD").split("\\$");
                 int num_iterations = Integer.parseInt(passwordFields[1]);
@@ -182,7 +184,13 @@ public class LoginController {
                 byte[] encryptedAttempt = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256").generateSecret(ks).getEncoded();
                 byte[] encryptedAttemptBase64 = Base64.getEncoder().encode(encryptedAttempt);
                 String s1 = new String(encryptedAttemptBase64);
-                return s1.equals(new String(passwordHash)) ? ReturnCode.GOOD : ReturnCode.INCORRECT_PASSWORD;
+                if(s1.equals(new String(passwordHash))) {
+                    superUserLogin = !results.getString("STATUS").equals("ST");
+                    userID = Integer.parseInt(results.getString("USER_ID"));
+                    return ReturnCode.GOOD;
+                } else {
+                    return ReturnCode.INCORRECT_PASSWORD;
+                }
             }
             catch (SQLException ex)  {
                 System.out.println("Encountered an error when executing given sql statement. " + ex);
@@ -192,8 +200,7 @@ public class LoginController {
                 ex.printStackTrace();
                 return ReturnCode.INTERNAL_ERROR;
             }
-        }
-        else {
+        } else {
             System.out.println("Failed to create connection to database.");
             return ReturnCode.NO_DB_CONNECTION;
         }

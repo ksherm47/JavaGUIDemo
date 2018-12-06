@@ -14,14 +14,15 @@ import javafx.scene.control.Button;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.*;
 import java.util.*;
 
 public class PhasePaneController {
 
     @FXML private Button btn_execute;
     @FXML private Button btn_stop;
-    @FXML private Button btn_save;
-    @FXML private Button btn_load;
+    @FXML private Button btn_saveToDisk;
+    @FXML private Button btn_loadFromDisk;
     @FXML private Button btn_pin1;
     @FXML private Button btn_pin2;
     @FXML private Button btn_pin3;
@@ -41,6 +42,7 @@ public class PhasePaneController {
 
     private int phaseNumber;
     private boolean superUser = false;
+    private int userID;
 
     private Map<Integer, Process> executeProcesses = new HashMap<Integer, Process>(); //Used to call hardware code
 
@@ -56,9 +58,11 @@ public class PhasePaneController {
     private PhasePaneConfiguration currentConfig;
 
     //populates phaseNumber String variable
-    public void getPhaseNumber(int p) {
+    public void setPhaseNumber(int p) {
         phaseNumber = p;
     }
+
+    public void setUserID(int id) { userID = id; }
 
     public void setSuperUser(boolean superUser) {
         if(!superUser) {
@@ -127,26 +131,77 @@ public class PhasePaneController {
         // TODO Tell C script to stop execution
     }
 
-    public void saveConfiguration() throws IOException {
+    public void saveToDisk() {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Save Phase Configuration");
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON FILES","*.json"));
-        File fileToSave = chooser.showSaveDialog(btn_save.getScene().getWindow());
+        File fileToSave = chooser.showSaveDialog(btn_saveToDisk.getScene().getWindow());
 
-        if(!fileToSave.getName().contains(".json")) {
-            fileToSave.renameTo(new File(fileToSave.getName() + ".json"));
+        if(fileToSave != null) {
+            if (!fileToSave.getName().contains(".json")) {
+                fileToSave.renameTo(new File(fileToSave.getName() + ".json"));
+            }
+
+            PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
+            String password = getPasswordDialog();
+
+            try {
+                cfg.savePassword(password);
+                Gson gson = new Gson();
+                PrintStream ps = new PrintStream(new FileOutputStream(fileToSave));
+                ps.print(gson.toJson(cfg));
+                ps.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void saveToCloud() {
+        String host = "marksgroup.database.windows.net:1433";
+        String database = "Test";
+        String dbuser = "serveradmin@marksgroup";
+        String dbpassword = "MarkTarakaiSucks!";
+        String url = String.format("jdbc:sqlserver://%s;database=%s;user=%s;password=%s;encrypt=true;"
+                + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", host, database, dbuser, dbpassword);
+        Connection connection = null;
+
+        //check driver is installed
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            System.out.println("JDBC driver detected in library path.");
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC driver NOT detected in library path. " + e);
         }
 
-        PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
-        String password = getPasswordDialog();
-
+        //initialize connection object
         try {
-            cfg.savePassword(password);
+            connection = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println("Failed to create connection to database " + e);
+        }
+
+        if (connection != null) {
+            System.out.println("Successfully created connection to database.");
+
+            PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
             Gson gson = new Gson();
-            PrintStream ps =  new PrintStream(new FileOutputStream(fileToSave));
-            ps.print(gson.toJson(cfg));
-            ps.close();
-        } catch (Exception e) {
+            //perform SQL queries
+            try {
+
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(
+                        "UPDATE PROFILE " +
+                             "SET PHASE_" + Integer.toString(phaseNumber) + "_SETTINGS = \'" + gson.toJson(cfg) + "\' " +
+                             "WHERE USER_ID = " + Integer.toString(userID) + ";");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            System.out.println("Config saved to cloud.");
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -155,7 +210,7 @@ public class PhasePaneController {
         FileChooser chooser = new FileChooser();
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON", "*.json"));
         chooser.setTitle("Load Phase Configuration");
-        File fileToLoad = chooser.showOpenDialog(btn_load.getScene().getWindow());
+        File fileToLoad = chooser.showOpenDialog(btn_loadFromDisk.getScene().getWindow());
         try {
             Gson gson = new Gson();
             String jsonString = new String(Files.readAllBytes(Paths.get(fileToLoad.getAbsolutePath())));
@@ -173,6 +228,67 @@ public class PhasePaneController {
             // TODO if not correct, show error message and let them try again
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadFromCloud() {
+        String host = "marksgroup.database.windows.net:1433";
+        String database = "Test";
+        String dbuser = "serveradmin@marksgroup";
+        String dbpassword = "MarkTarakaiSucks!";
+        String url = String.format("jdbc:sqlserver://%s;database=%s;user=%s;password=%s;encrypt=true;"
+                + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", host, database, dbuser, dbpassword);
+        Connection connection = null;
+
+        //check driver is installed
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            System.out.println("JDBC driver detected in library path.");
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC driver NOT detected in library path. " + e);
+        }
+
+        //initialize connection object
+        try {
+            connection = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println("Failed to create connection to database " + e);
+        }
+
+        if (connection != null) {
+            System.out.println("Successfully created connection to database.");
+
+            PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
+            Gson gson = new Gson();
+            //perform SQL queries
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet results = statement.executeQuery(
+                        "SELECT PHASE_" + Integer.toString(phaseNumber) +"_SETTINGS " +
+                        "FROM AUTH_USER JOIN PROFILE " +
+                        "ON ID=USER_ID " +
+                        "WHERE USER_ID = " + Integer.toString(userID) + ";");
+
+                results.next();
+                currentConfig = gson.fromJson(results.getString("PHASE_" + phaseNumber + "_SETTINGS"),
+                        PhasePaneConfiguration.class);
+                pinStatuses = currentConfig.getPins();
+                List<Button> pinButtons = getPinButtons();
+                for(int i = 0; i < pinStatuses.length; i++) {
+                    if(pinStatuses[i]) {
+                        pinButtons.get(i).setStyle("-fx-base: #b6e7c9;");
+                    } else {
+                        pinButtons.get(i).setStyle("");
+                    }
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
