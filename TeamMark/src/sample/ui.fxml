@@ -3,10 +3,21 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="480.0" maxWidth="640.0" minHeight="311.0" minWidth="640.0" prefHeight="480.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UIController">
-    <Button fx:id="btn_phase1" layoutX="300" layoutY="79.0" mnemonicParsing="false" onAction="#openPhase" scaleX="2.0" scaleY="2.0" text="Phase 1" />
-    <Button fx:id="phase2_button" layoutX="300" layoutY="228.0" mnemonicParsing="false" onAction="#openPhase" scaleX="2.0" scaleY="2.0" text="Phase 2" />
-    <Button fx:id="phase3_button" layoutX="300" layoutY="383.0" mnemonicParsing="false" onAction="#openPhase" scaleX="2.0" scaleY="2.0" text="Phase 3" />
-    <Label fx:id="label_username" layoutX="275.0" layoutY="14.0" prefHeight="35.0" prefWidth="228.0" text="Welcome: Username" />
+    <Button fx:id="btn_phase1" layoutX="309.0" layoutY="20.0" mnemonicParsing="false" onAction="#openPhase" prefHeight="23.0" prefWidth="48.0" scaleX="2.0" scaleY="2.0" text="Phase 1">
+      <font>
+         <Font size="10.0" />
+      </font></Button>
+    <Button fx:id="btn_phase2" layoutX="426.0" layoutY="20.0" mnemonicParsing="false" onAction="#openPhase" scaleX="2.0" scaleY="2.0" text="Phase 2">
+      <font>
+         <Font size="10.0" />
+      </font></Button>
+    <Button fx:id="btn_phase3" layoutX="540.0" layoutY="20.0" mnemonicParsing="false" onAction="#openPhase" prefHeight="23.0" prefWidth="48.0" scaleX="2.0" scaleY="2.0" text="Phase 3">
+      <font>
+         <Font size="10.0" />
+      </font></Button>
+    <Label fx:id="label_username" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="228.0" text="Welcome: Username" />
+   <AnchorPane fx:id="phasePane" layoutY="56.0" prefHeight="424.0" prefWidth="640.0" />
 </AnchorPane>

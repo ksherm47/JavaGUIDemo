@@ -16,6 +16,7 @@ public class Main extends Application {
         Parent root = Loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Login");
         stage.show();
     }
 
