@@ -115,7 +115,7 @@ public class PhasePaneController {
         int pinNumber = 1;
         for (Boolean b : pinStatuses) {
             if (b) {
-                callCScript(1, pinNumber);  // TODO Get what phase we're on
+                callCScript(phaseNumber, pinNumber);  // TODO Get what phase we're on
             }
             pinNumber = pinNumber + 1;
         }
@@ -124,8 +124,8 @@ public class PhasePaneController {
     //disables stop button
     //enables pins and execute button
     public void stopPhase() {
-        btn_stop.setDisable(false);
-        btn_execute.setDisable(true);
+        btn_stop.setDisable(true);
+        btn_execute.setDisable(false);
         btn_loadFromDisk.setDisable(false);
         btn_saveToDisk.setDisable(false);
         btn_loadFromCloud.setDisable(false);
