@@ -28,7 +28,7 @@
     <Button fx:id="btn_pin12" mnemonicParsing="false" onAction="#colorChange" prefHeight="43.0" prefWidth="97.0" text="Pin 12" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
     <Button fx:id="btn_pin13" mnemonicParsing="false" onAction="#colorChange" prefHeight="43.0" prefWidth="97.0" text="Pin 13" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
     <Button fx:id="btn_pin14" mnemonicParsing="false" onAction="#colorChange" prefHeight="43.0" prefWidth="97.0" text="Pin 14" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-    <Button fx:id="btn_pin15" mnemonicParsing="false" onAction="#colorChange" prefHeight="43.0" prefWidth="97.0" text="Pin 12" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+    <Button fx:id="btn_pin15" mnemonicParsing="false" onAction="#colorChange" prefHeight="43.0" prefWidth="97.0" text="Pin 15" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
     <Button fx:id="btn_pin16" mnemonicParsing="false" onAction="#colorChange" prefHeight="43.0" prefWidth="97.0" text="Pin 16" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
