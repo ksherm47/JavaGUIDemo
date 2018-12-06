@@ -39,7 +39,8 @@ public class PhasePaneController {
     @FXML private Button btn_pin15;
     @FXML private Button btn_pin16;
 
-    String phaseNumber;
+    private int phaseNumber;
+    private boolean superUser = false;
 
     private Map<Integer, Process> executeProcesses = new HashMap<Integer, Process>(); //Used to call hardware code
 
@@ -52,11 +53,20 @@ public class PhasePaneController {
     }
     
     private boolean[] pinStatuses = new boolean[16];
-    PhasePaneConfiguration currentConfig;
+    private PhasePaneConfiguration currentConfig;
 
     //populates phaseNumber String variable
-    public void getPhaseNumber(String p) {
+    public void getPhaseNumber(int p) {
         phaseNumber = p;
+    }
+
+    public void setSuperUser(boolean superUser) {
+        if(!superUser) {
+            for (Button b : getPinButtons()) {
+                b.setDisable(true);
+            }
+        }
+        this.superUser = superUser;
     }
 
     //changes color of button on press
@@ -86,8 +96,10 @@ public class PhasePaneController {
     public void executePhase() {
         btn_stop.setDisable(false);
         btn_execute.setDisable(true);
-        for(Button b : getPinButtons()) {
-            b.setDisable(true);
+        if(superUser) {
+            for (Button b : getPinButtons()) {
+                b.setDisable(true);
+            }
         }
 
         int pinNumber = 1;
@@ -102,10 +114,12 @@ public class PhasePaneController {
     //disables stop button
     //enables pins and execute button
     public void stopPhase() {
-        btn_stop.setDisable(true);
         btn_execute.setDisable(false);
-        for(Button b : getPinButtons()) {
-            b.setDisable(false);
+        btn_stop.setDisable(true);
+        if(superUser) {
+            for (Button b : getPinButtons()) {
+                b.setDisable(false);
+            }
         }
         int phase = 1; //TODO get current phase. Right now just testing with phase 1.
         Process process = executeProcesses.get(phase);

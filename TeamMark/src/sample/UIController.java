@@ -15,15 +15,16 @@ public class UIController {
     @FXML Button btn_phase3;
     @FXML AnchorPane phasePane;
 
+
     //array to hold panes that hold phase_pane.fxml
     Pane[] phaseArray = new Pane[3];
 
     //calls initialize when FXML is loaded
-    public void initialize() {
+    public void initialize(boolean superUser) {
         //fills array up to array length with panes
         for(int i = 0; i < phaseArray.length; i++) {
             //fills array position i with pane from makePane method
-            phaseArray[i] = makePane(i+1);
+            phaseArray[i] = makePane(i+1, superUser);
         }
         //fills phasePane with phase 1 by default
         phasePane.getChildren().add(phaseArray[0]);
@@ -32,19 +33,20 @@ public class UIController {
     }
 
     //makes and returns a pane
-    public Pane makePane(Integer phaseNumber) {
-        FXMLLoader Loader = new FXMLLoader();
-        Loader.setLocation(getClass().getResource("phase_pane.fxml"));
+    public Pane makePane(int phaseNumber, boolean superUser) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("phase_pane.fxml"));
         try {
-            Loader.load();
-        }
-        catch(Exception e) {
+            loader.load();
+        } catch(Exception e) {
+            e.printStackTrace();
         }
         //retrieves PhasePaneController
-        PhasePaneController PhasePaneController = Loader.getController();
+        PhasePaneController PhasePaneController = loader.getController();
         //calls getPhaseNumber method to determine phase number
-        PhasePaneController.getPhaseNumber(phaseNumber.toString());
-        Pane root = Loader.getRoot();
+        PhasePaneController.getPhaseNumber(phaseNumber);
+        PhasePaneController.setSuperUser(superUser);
+        Pane root = loader.getRoot();
         return root;
     }
 

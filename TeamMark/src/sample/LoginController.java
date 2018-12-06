@@ -26,13 +26,17 @@ public class LoginController {
     @FXML Label label_error;
     @FXML Button button_login;
 
-    private enum ReturnCode {USER_DOES_NOT_EXIST,
+    private enum ReturnCode {
+        USER_DOES_NOT_EXIST,
         USER_NOT_ACTIVATED,
         INCORRECT_PASSWORD,
         PASSWORD_NOT_SET,
         NO_DB_CONNECTION,
         INTERNAL_ERROR,
-        GOOD}
+        GOOD
+    }
+
+    private boolean superUserLogin;
 
     //client side validation.
     //ensure username and password is not empty
@@ -51,7 +55,7 @@ public class LoginController {
             //IF SUCCESSFUL CALL
             ReturnCode rc = validateLogin(textField_userName.getText(), textField_password.getText());
             if(rc == ReturnCode.GOOD) {
-                login();
+                login(superUserLogin);
             } else if(rc == ReturnCode.USER_DOES_NOT_EXIST) {
                 label_error.setText("Username not recognized");
             } else if(rc == ReturnCode.USER_NOT_ACTIVATED) {
@@ -78,19 +82,20 @@ public class LoginController {
     }
 
     //closes window on successful login and opens main ui window
-    public void login() {
-        FXMLLoader Loader = new FXMLLoader();
-        Loader.setLocation(getClass().getResource("ui.fxml"));
+    public void login(boolean superUser) {
+        FXMLLoader uiLoader = new FXMLLoader();
+        uiLoader.setLocation(getClass().getResource("ui.fxml"));
         try {
-            Loader.load();
+            uiLoader.load();
         }
         catch(Exception e) {
         }
         //retrieves the UIController
-        UIController UIController = Loader.getController();
+        UIController uiController = uiLoader.getController();
         //calls fillUsername method from UIController
-        UIController.fillUsername(textField_userName.getText());
-        Parent root = Loader.getRoot();
+        uiController.fillUsername(textField_userName.getText());
+        uiController.initialize(superUser);
+        Parent root = uiLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Phase Select");
@@ -134,7 +139,7 @@ public class LoginController {
             //perform SQL queries
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT UI_PASSWORD, IS_ACTIVATED " +
+                        "SELECT UI_PASSWORD, IS_ACTIVATED, STATUS " +
                                 "FROM AUTH_USER JOIN PROFILE " +
                                 "ON ID=USER_ID " +
                                 "WHERE USERNAME = ?;");
@@ -164,6 +169,8 @@ public class LoginController {
                 if(results.getString("UI_PASSWORD").equals("")) {
                     return ReturnCode.PASSWORD_NOT_SET;
                 }
+
+                superUserLogin = !results.getString("STATUS").equals("ST");
 
                 String[] passwordFields = results.getString("UI_PASSWORD").split("\\$");
                 int num_iterations = Integer.parseInt(passwordFields[1]);
