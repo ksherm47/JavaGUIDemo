@@ -143,10 +143,8 @@ public class PhasePaneController {
             }
 
             PhasePaneConfiguration cfg = new PhasePaneConfiguration(pinStatuses);
-            String password = getPasswordDialog();
 
             try {
-                cfg.savePassword(password);
                 Gson gson = new Gson();
                 PrintStream ps = new PrintStream(new FileOutputStream(fileToSave));
                 ps.print(gson.toJson(cfg));
@@ -271,15 +269,18 @@ public class PhasePaneController {
                         "WHERE USER_ID = " + Integer.toString(userID) + ";");
 
                 results.next();
-                currentConfig = gson.fromJson(results.getString("PHASE_" + phaseNumber + "_SETTINGS"),
-                        PhasePaneConfiguration.class);
-                pinStatuses = currentConfig.getPins();
-                List<Button> pinButtons = getPinButtons();
-                for(int i = 0; i < pinStatuses.length; i++) {
-                    if(pinStatuses[i]) {
-                        pinButtons.get(i).setStyle("-fx-base: #b6e7c9;");
-                    } else {
-                        pinButtons.get(i).setStyle("");
+                String result = results.getString("PHASE_" + phaseNumber + "_SETTINGS");
+                if(result != null) {
+                    String jsonString = result.replace("\"", "");
+                    currentConfig = gson.fromJson(jsonString, PhasePaneConfiguration.class);
+                    pinStatuses = currentConfig.getPins();
+                    List<Button> pinButtons = getPinButtons();
+                    for (int i = 0; i < pinStatuses.length; i++) {
+                        if (pinStatuses[i]) {
+                            pinButtons.get(i).setStyle("-fx-base: #b6e7c9;");
+                        } else {
+                            pinButtons.get(i).setStyle("");
+                        }
                     }
                 }
             } catch (SQLException ex) {
@@ -291,24 +292,6 @@ public class PhasePaneController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private String getPasswordDialog() {
-        // open password dialog
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("save_pass_pane.fxml"));
-        try {
-            loader.load();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-        return ((PromptController)loader.getController()).getPassword();
-
-        // TODO needs to pause execution until a password is returned from the form
     }
 
     private void callCScript(int phase,  int pin) { // TODO - Reference: https://stackoverflow.com/questions/29609790/using-javas-process-builder-to-call-a-c-program
