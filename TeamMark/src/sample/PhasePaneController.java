@@ -22,7 +22,9 @@ public class PhasePaneController {
     @FXML private Button btn_execute;
     @FXML private Button btn_stop;
     @FXML private Button btn_saveToDisk;
+    @FXML private Button btn_saveToCloud;
     @FXML private Button btn_loadFromDisk;
+    @FXML private Button btn_loadFromCloud;
     @FXML private Button btn_pin1;
     @FXML private Button btn_pin2;
     @FXML private Button btn_pin3;
@@ -100,6 +102,10 @@ public class PhasePaneController {
     public void executePhase() {
         btn_stop.setDisable(false);
         btn_execute.setDisable(true);
+        btn_loadFromDisk.setDisable(true);
+        btn_saveToDisk.setDisable(true);
+        btn_loadFromCloud.setDisable(true);
+        btn_saveToCloud.setDisable(true);
         if(superUser) {
             for (Button b : getPinButtons()) {
                 b.setDisable(true);
@@ -118,8 +124,12 @@ public class PhasePaneController {
     //disables stop button
     //enables pins and execute button
     public void stopPhase() {
-        btn_execute.setDisable(false);
-        btn_stop.setDisable(true);
+        btn_stop.setDisable(false);
+        btn_execute.setDisable(true);
+        btn_loadFromDisk.setDisable(false);
+        btn_saveToDisk.setDisable(false);
+        btn_loadFromCloud.setDisable(false);
+        btn_saveToCloud.setDisable(false);
         if(superUser) {
             for (Button b : getPinButtons()) {
                 b.setDisable(false);
@@ -204,7 +214,7 @@ public class PhasePaneController {
         }
     }
 
-    public void loadConfiguration() {
+    public void loadFromDisk() {
         FileChooser chooser = new FileChooser();
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON", "*.json"));
         chooser.setTitle("Load Phase Configuration");
