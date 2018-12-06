@@ -9,6 +9,7 @@ import java.util.Base64;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,7 @@ import javax.crypto.spec.PBEKeySpec;
 
 public class LoginController {
     @FXML TextField textField_userName;
-    @FXML TextField textField_password;
+    @FXML PasswordField textField_password;
     @FXML Label label_error;
     @FXML Button button_login;
 
