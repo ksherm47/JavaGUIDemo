@@ -43,7 +43,8 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
   </GridPane>
-  <Button fx:id="btn_saveToDisk" layoutX="35.0" layoutY="400.0" mnemonicParsing="false" onAction="#saveConfiguration" prefHeight="51.0" prefWidth="179.0" text="Save to Disk" />
-  <Button fx:id="btn_load" layoutX="455.0" layoutY="400.0" mnemonicParsing="false" onAction="#loadConfiguration" prefHeight="51.0" prefWidth="114.0" text="Load" />
-   <Button fx:id="btn_saveToCloud" layoutX="251.0" layoutY="400.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="179.0" text="Save to Cloud" />
+  <Button fx:id="btn_saveToDisk" layoutX="78.0" layoutY="400.0" mnemonicParsing="false" onAction="#saveConfiguration" prefHeight="51.0" prefWidth="179.0" text="Save to Disk" />
+  <Button fx:id="btn_loadFromDisk" layoutX="78.0" layoutY="470.0" mnemonicParsing="false" onAction="#loadConfiguration" prefHeight="51.0" prefWidth="179.0" text="Load From Disk" />
+   <Button fx:id="btn_saveToCloud" layoutX="300.0" layoutY="400.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="179.0" text="Save to Cloud" />
+  <Button fx:id="btn_loadFromCloud" layoutX="300.0" layoutY="470.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="179.0" text="Load From Cloud" />
 </AnchorPane>
